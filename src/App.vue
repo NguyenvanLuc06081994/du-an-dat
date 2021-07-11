@@ -12,7 +12,9 @@ import ToDoList from './components/ToDoList.vue'
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    HelloWorld,
+    // eslint-disable-next-line vue/no-unused-components
+    ToDoList
   }
 }
 </script>

@@ -1,41 +1,79 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
+    <div :class="class_dat">{{ dat_data }}</div>
+    <br>
+    <input :type="dat_input_type" v-model="dat">
+    <button class="btn-success" @click="Lucdepzai">submit</button>
+    <div class="row">
+      <div v-bind:class="[ activeClass, errorClass ]" v-bind:style="{ height: height_data, width: witdh_data }"></div>
+      <div class=""></div>
+      <jw-pagination :items="exampleItems" @changePage="onChangePage" :labels="customLabels"></jw-pagination>
+    </div>
   </div>
 </template>
 
 <script>
+// eslint-disable-next-line no-unused-vars
+const exampleItems = [...Array(150).keys()].map(i => ({ id: (i+1), name: 'Item ' + (i+1) }));
+// eslint-disable-next-line no-unused-vars
+const customLabels = {
+  first: '<<',
+  last: '>>',
+  previous: '<',
+  next: '>'
+};
+
 export default {
   name: 'HelloWorld',
   props: {
     msg: String
-  }
+  },
+  data() {
+    return {
+      dat_data: 'dat-sida',
+      dat : '',
+      class_dat: 'bg-success',
+      dat_input_type : 'number',
+      height_data : '50px',
+      witdh_data : '50px',
+      class_example : 'col-md-6 bg-info',
+      activeClass : 'col-md-12',
+      errorClass : 'bg-danger',
+      pageOfItems: [],
+      exampleItems : [
+            {id: 1, name: 'abc'},
+            {id: 1, name: '123123'},
+            {id: 1, name: 'adfdsfbc'},
+            {id: 1, name: 'axcvxcbc'},
+            {id: 1, name: 'abfvhnvbc'},
+            {id: 1, name: 'gdf'},
+            {id: 1, name: 'abcvcbcv'},
+      ]
+    };
+  },
+  mounted() {
+    this.dat_data = 'ascasdasd';
+
+  },
+
+  methods : {
+    Lucdepzai: function () {
+      this.dat_data = 'Luc-dep-zai';
+      this.class_dat = "bg-danger";
+    },
+
+    checkHeigt: function () {
+      // eslint-disable-next-line no-empty
+      if (this.height_data === '50px'){
+        this.class_example = ''
+      }
+    },
+    onChangePage(pageOfItems) {
+      // update page of items
+      console.log(pageOfItems);
+      // this.pageOfItems = pageOfItems;
+    },
+  },
 }
 </script>
 
@@ -44,14 +82,17 @@ export default {
 h3 {
   margin: 40px 0 0;
 }
+
 ul {
   list-style-type: none;
   padding: 0;
 }
+
 li {
   display: inline-block;
   margin: 0 10px;
 }
+
 a {
   color: #42b983;
 }
